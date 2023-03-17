@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  dask-scheduler:
+    container_name: dask-scheduler
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: poetry run dask scheduler
+    ports:
+      - "8786:8786"
+      - "8787:8787"
+
+  dask-worker:
+    container_name: dask-worker
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - PYTHONPATH=/app
+    command: poetry run dask worker dask-scheduler:8786 
+    depends_on:
+      - dask-scheduler
