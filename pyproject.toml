@@ -13,7 +13,9 @@ distributed = "^2023.3.1"
 fastapi = "^0.94.1"
 uvicorn = {extras = ["standard"], version = "^0.21.1"}
 bokeh = ">=2.4.2,<3"
-dask-cloudprovider = {extras = ["gcp"], version = "^2022.10.0"}
+ray = {extras = ["default"], version = "^2.3.0"}
+setuptools = "^67.6.0"
+google-api-python-client = "^2.81.0"
 cryptography = "^39.0.2"
 
 

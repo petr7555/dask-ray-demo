@@ -9,14 +9,15 @@ from ..square_number.square_number import square_number
 
 router = APIRouter(
     prefix="/dask",
+    tags=["dask"],
 )
 
 
 def get_client() -> Client:
     load_dotenv()
-    dask_address = os.getenv('DASK_ADDRESS')
+    dask_address = os.getenv('DASK_CLUSTER_ADDRESS')
     if dask_address is None:
-        raise ValueError("DASK_ADDRESS environment variable not set.")
+        raise ValueError("DASK_CLUSTER_ADDRESS environment variable not set.")
 
     print(f"Connecting to Dask cluster at {dask_address}...")
     dask_client = Client(dask_address)
@@ -30,16 +31,8 @@ futures_refs = []
 
 
 @router.get("/")
-def healthcheck() -> str:
+def health() -> str:
     return "Dask OK"
-
-
-@router.post("/square")
-def square(x: int) -> str:
-    future = client.submit(square_number, x)
-    # Dask holds results in the memory as long as we have a reference to the future.
-    futures_refs.append(future)
-    return future.key
 
 
 @router.post("/square_sync")
@@ -49,6 +42,14 @@ def square_sync(x: int) -> int:
     future = client.submit(square_number, x)
     futures_refs.append(future)
     return future.result()
+
+
+@router.post("/square")
+def square(x: int) -> str:
+    future = client.submit(square_number, x)
+    # Dask holds results in the memory as long as we have a reference to the future.
+    futures_refs.append(future)
+    return future.key
 
 
 @router.get("/square/status/{key}")
