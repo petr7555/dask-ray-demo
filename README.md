@@ -3,6 +3,7 @@
 - install dependencies: `poetry install`
 - run Dask cluster: `docker compose up -d`
 - run Ray cluster: `ray start --head`
+  - (later stop with `ray stop`)
 - run server: `uvicorn app.main:app --reload`
 
 ### Run Ray Jobs
