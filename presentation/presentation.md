@@ -122,5 +122,5 @@ job_id = client.submit_job(
 
 # Thank you
 
-Code + Slides : https://github.com/petr7555/dask-ray-demo
+Code + Slides: https://github.com/petr7555/dask-ray-demo
  

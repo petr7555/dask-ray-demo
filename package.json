@@ -3,6 +3,6 @@
     "@marp-team/marp-cli": "^2.4.0"
   },
   "scripts": {
-    "build:pdf": "marp --pdf --allow-local-files ./presentation/intro.md"
+    "build:pdf": "marp --pdf --allow-local-files ./presentation/presentation.md"
   }
 }
