@@ -37,7 +37,7 @@ def health() -> str:
 
 @router.post("/square_sync")
 def square_sync(x: int) -> int:
-    # By default dask assumes that functions are pure and therefore caches results.
+    # By default, dask assumes that functions are pure and therefore caches results.
     # To avoid this, we can either use `pure=False` or not store a reference to the future.
     future = client.submit(square_number, x)
     futures_refs.append(future)
