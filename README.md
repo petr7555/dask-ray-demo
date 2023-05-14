@@ -10,7 +10,7 @@
 
 #### Using CLI
 
-- `ray job submit --address http://localhost:8265 -- python script.py`
+- `ray job submit --address ray://localhost:10001 -- python script.py`
 
 #### Using Python SDK
 

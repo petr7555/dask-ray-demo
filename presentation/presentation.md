@@ -100,7 +100,7 @@ The recommended way to run a job on a Ray cluster.
 # Jobs CLI
 
 ```bash
-ray job submit --address http://localhost:8265 -- python script.py
+ray job submit --address ray://localhost:10001 -- python script.py
 ```
 
 <!-- _footer: https://docs.ray.io/en/latest/cluster/running-applications/job-submission/quickstart.html -->
@@ -110,7 +110,7 @@ ray job submit --address http://localhost:8265 -- python script.py
 # Python SDK:
 
 ```python
-client = JobSubmissionClient("http://localhost:8265")
+client = JobSubmissionClient("ray://localhost:10001")
 job_id = client.submit_job(
     entrypoint="python script.py",
 )
