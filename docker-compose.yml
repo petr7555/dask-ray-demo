@@ -5,6 +5,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      - PYTHONPATH=/app
     command: poetry run dask scheduler
     ports:
       - "8786:8786"
